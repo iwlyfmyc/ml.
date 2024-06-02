@@ -8,33 +8,34 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #fff; /* 白色背景 */
-    color: #000; /* 黑色文字 */
+    background-color: #fff;
+    color: #000;
     font-family: Arial, sans-serif;
   }
 
   .menu {
-    background-color: #333; /* 深灰色菜单栏 */
-    padding: 15px 30px; /* 调整菜单栏的内边距 */
+    background-color: #333;
+    padding: 15px 30px;
     text-align: left;
-    margin-bottom: 20px; /* 调整菜单栏底部间距 */
+    margin-bottom: 20px;
+  }
+
+  .menu a, .menu .site-name {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 30px;
+    display: inline-block;
   }
 
   .menu a {
-    color: #fff; /* 菜单项文字颜色 */
-    text-decoration: none;
-    margin-right: 30px; /* 调整菜单项之间的间距 */
-    padding: 12px 20px; /* 调整菜单项的内边距 */
+    padding: 12px 20px;
     border-radius: 5px;
-    display: inline-block; /* 设置菜单项为行内块元素 */
-    font-size: 18px; /* 调整菜单项文字大小 */
+    font-size: 18px;
   }
 
   .menu .site-name {
-    font-size: 24px; /* 调整网站名称文字大小 */
-    margin-right: 30px; /* 调整网站名称与菜单项之间的间距 */
-    color: #fff; /* 网站名称文字颜色 */
-    font-weight: bold; /* 网站名称字体加粗 */
+    font-size: 24px;
+    font-weight: bold;
   }
 
   .button-container {
@@ -42,7 +43,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 150px); /* 让按钮居中显示 */
+    height: calc(100vh - 150px);
   }
 
   .button {
@@ -52,14 +53,14 @@
     text-align: center;
     font-size: 36px;
     font-weight: bold;
-    color: #fff; /* 按钮文字颜色 */
+    color: #fff;
     text-decoration: none;
     transition: transform 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-    cursor: pointer; /* Add cursor pointer for better user experience */
-    margin: 20px auto; /* Center the button */
-    background-color: #007bff; /* 默认蓝色按钮 */
+    cursor: pointer;
+    margin: 20px auto;
+    background-color: #007bff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,96 +68,78 @@
 
   .button span {
     transition: transform 0.3s ease;
-    line-height: 1; /* 保持文字垂直居中 */
+    line-height: 1;
   }
 
   .button:active {
-    transition: transform 0.2s ease; /* Add a smooth transition for the click effect */
-    transform: scale(0.95); /* Scale down the button when clicked */
+    transform: scale(0.95);
   }
 
   @media screen and (max-width: 480px) {
     .menu .site-name {
-      font-size: 12px; /* 调整网站名称文字大小为一半 */
-      margin-right: 15px; /* 调整网站名称与菜单项之间的间距为一半 */
+      font-size: 12px;
+      margin-right: 15px;
     }
 
     .menu a {
-      font-size: 9px; /* 调整菜单项文字大小为一半 */
-      margin-right: 15px; /* 调整菜单项之间的间距为一半 */
-      padding: 6px 10px; /* 调整菜单项的内边距 */
+      font-size: 9px;
+      margin-right: 15px;
+      padding: 6px 10px;
     }
 
     .button {
       width: 100px;
       height: 100px;
       font-size: 24px;
-      margin-top: -20px; /* Adjust this value as needed */
-    }
-
-    .button span {
-      padding-top: 10px; /* 调整文字垂直居中的位置 */
+      margin-top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>
 </head>
 <body>
-  <!-- 菜单栏 -->
   <div class="menu">
     <span class="site-name">MY</span>
-    <a href="#" onclick="showBlue()" id="blueLink" class="active">MyNas</a>
-    <a href="#" onclick="showBaidu()" id="baiduLink">ChatGPT</a>
-    <a href="#" onclick="showGoogle()" id="googleLink">Google</a>
+    <a href="#" onclick="showScreen('mynas')" id="blueLink" class="active">MyNas</a>
+    <a href="#" onclick="showScreen('chatgpt')" id="baiduLink">ChatGPT</a>
+    <a href="#" onclick="showScreen('google')" id="googleLink">Google</a>
   </div>
 
   <div class="button-container">
-    <!-- MyNas界面 -->
-    <div id="blueScreen">
-      <div class="button" onclick="setTimeout(function(){ window.location.href='https://iwlyfmyc.ddnsto.com:443'; }, 300)"><span>GO</span></div>
+    <div id="mynasScreen" class="screen">
+      <div class="button" onclick="navigateTo('https://iwlyfmyc.ddnsto.com:443')"><span>GO</span></div>
     </div>
-
-    <!-- ChatGPT界面 -->
-    <div id="baiduScreen" style="display: none;">
-      <div class="button" onclick="setTimeout(function(){ window.location.href='https://chatgpt.com/'; }, 300)"><span>Chat</span></div>
+    <div id="chatgptScreen" class="screen" style="display: none;">
+      <div class="button" onclick="navigateTo('https://chatgpt.com/')"><span>Chat</span></div>
     </div>
-
-    <!-- Google界面 -->
-    <div id="googleScreen" style="display: none;">
-      <div class="button" onclick="setTimeout(function(){ window.location.href='https://www.google.com'; }, 300)"><span>Goo</span></div>
+    <div id="googleScreen" class="screen" style="display: none;">
+      <div class="button" onclick="navigateTo('https://www.google.com')"><span>Goo</span></div>
     </div>
   </div>
 
   <script>
-    function showBlue() {
-      document.getElementById('blueScreen').style.display = 'block';
-      document.getElementById('baiduScreen').style.display = 'none';
-      document.getElementById('googleScreen').style.display = 'none';
-      document.getElementById('blueLink').classList.add('active');
-      document.getElementById('baiduLink').classList.remove('active');
-      document.getElementById('googleLink').classList.remove('active');
+    function showScreen(screenId) {
+      var screens = document.querySelectorAll('.screen');
+      for (var i = 0; i < screens.length; i++) {
+        screens[i].style.display = 'none';
+      }
+      document.getElementById(screenId + 'Screen').style.display = 'block';
+
+      var links = document.querySelectorAll('.menu a');
+      for (var j = 0; j < links.length; j++) {
+        links[j].classList.remove('active');
+      }
+      document.getElementById(screenId + 'Link').classList.add('active');
     }
 
-    function showBaidu() {
-      document.getElementById('blueScreen').style.display = 'none';
-      document.getElementById('baiduScreen').style.display = 'block';
-      document.getElementById('googleScreen').style.display = 'none';
-      document.getElementById('blueLink').classList.remove('active');
-      document.getElementById('baiduLink').classList.add('active');
-      document.getElementById('googleLink').classList.remove('active');
+    function navigateTo(url) {
+      setTimeout(function() { window.location.href = url; }, 300);
     }
 
-    function showGoogle() {
-      document.getElementById('blueScreen').style.display = 'none';
-      document.getElementById('baiduScreen').style.display = 'none';
-      document.getElementById('googleScreen').style.display = 'block';
-      document.getElementById('blueLink').classList.remove('active');
-      document.getElementById('baiduLink').classList.remove('active');
-      document.getElementById('googleLink').classList.add('active');
-    }
-
-    // 页面加载时默认显示MyNas界面
     window.onload = function() {
-      showBlue();
+      showScreen('mynas');
     };
   </script>
 </body>
