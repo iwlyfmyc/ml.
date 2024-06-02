@@ -1,0 +1,163 @@
+、<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* 白色背景 */
+    color: #000; /* 黑色文字 */
+    font-family: Arial, sans-serif;
+  }
+
+  .menu {
+    background-color: #333; /* 深灰色菜单栏 */
+    padding: 15px 30px; /* 调整菜单栏的内边距 */
+    text-align: left;
+    margin-bottom: 20px; /* 调整菜单栏底部间距 */
+  }
+
+  .menu a {
+    color: #fff; /* 菜单项文字颜色 */
+    text-decoration: none;
+    margin-right: 30px; /* 调整菜单项之间的间距 */
+    padding: 12px 20px; /* 调整菜单项的内边距 */
+    border-radius: 5px;
+    display: inline-block; /* 设置菜单项为行内块元素 */
+    font-size: 18px; /* 调整菜单项文字大小 */
+  }
+
+  .menu .site-name {
+    font-size: 24px; /* 调整网站名称文字大小 */
+    margin-right: 30px; /* 调整网站名称与菜单项之间的间距 */
+    color: #fff; /* 网站名称文字颜色 */
+    font-weight: bold; /* 网站名称字体加粗 */
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 150px); /* 让按钮居中显示 */
+  }
+
+  .button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff; /* 按钮文字颜色 */
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    cursor: pointer; /* Add cursor pointer for better user experience */
+    margin: 20px auto; /* Center the button */
+    background-color: #007bff; /* 默认蓝色按钮 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button span {
+    transition: transform 0.3s ease;
+    line-height: 1; /* 保持文字垂直居中 */
+  }
+
+  .button:active {
+    transition: transform 0.2s ease; /* Add a smooth transition for the click effect */
+    transform: scale(0.95); /* Scale down the button when clicked */
+  }
+
+  @media screen and (max-width: 480px) {
+    .menu .site-name {
+      font-size: 12px; /* 调整网站名称文字大小为一半 */
+      margin-right: 15px; /* 调整网站名称与菜单项之间的间距为一半 */
+    }
+
+    .menu a {
+      font-size: 9px; /* 调整菜单项文字大小为一半 */
+      margin-right: 15px; /* 调整菜单项之间的间距为一半 */
+      padding: 6px 10px; /* 调整菜单项的内边距 */
+    }
+
+    .button {
+      width: 100px;
+      height: 100px;
+      font-size: 24px;
+      margin-top: -20px; /* Adjust this value as needed */
+    }
+
+    .button span {
+      padding-top: 10px; /* 调整文字垂直居中的位置 */
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- 菜单栏 -->
+  <div class="menu">
+    <span class="site-name">MY</span>
+    <a href="#" onclick="showBlue()" id="blueLink" class="active">MyNas</a>
+    <a href="#" onclick="showBaidu()" id="baiduLink">呵呵2</a>
+    <a href="#" onclick="showGoogle()" id="googleLink">呵呵3</a>
+  </div>
+
+  <div class="button-container">
+    <!-- MyNas界面 -->
+    <div id="blueScreen">
+      <div class="button" onclick="setTimeout(function(){ window.location.href='https://iwlyfmyc.ddnsto.com:443'; }, 300)"><span>GO</span></div>
+    </div>
+
+    <!-- 呵呵2界面 -->
+    <div id="baiduScreen" style="display: none;">
+      <div class="button" onclick="setTimeout(function(){ window.location.href='https://www.baidu.com'; }, 300)"><span>GO2</span></div>
+    </div>
+
+    <!-- 呵呵3界面 -->
+    <div id="googleScreen" style="display: none;">
+      <div class="button" onclick="setTimeout(function(){ window.location.href='https://www.google.com'; }, 300)"><span>GO3</span></div>
+    </div>
+  </div>
+
+  <script>
+    function showBlue() {
+      document.getElementById('blueScreen').style.display = 'block';
+      document.getElementById('baiduScreen').style.display = 'none';
+      document.getElementById('googleScreen').style.display = 'none';
+      document.getElementById('blueLink').classList.add('active');
+      document.getElementById('baiduLink').classList.remove('active');
+      document.getElementById('googleLink').classList.remove('active');
+    }
+
+    function showBaidu() {
+      document.getElementById('blueScreen').style.display = 'none';
+      document.getElementById('baiduScreen').style.display = 'block';
+      document.getElementById('googleScreen').style.display = 'none';
+      document.getElementById('blueLink').classList.remove('active');
+      document.getElementById('baiduLink').classList.add('active');
+      document.getElementById('googleLink').classList.remove('active');
+    }
+
+    function showGoogle() {
+      document.getElementById('blueScreen').style.display = 'none';
+      document.getElementById('baiduScreen').style.display = 'none';
+      document.getElementById('googleScreen').style.display = 'block';
+      document.getElementById('blueLink').classList.remove('active');
+      document.getElementById('baiduLink').classList.remove('active');
+      document.getElementById('googleLink').classList.add('active');
+    }
+
+    // 页面加载时默认显示MyNas界面
+    window.onload = function() {
+      showBlue();
+    };
+  </script>
+</body>
+</html>
