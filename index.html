@@ -1,146 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MY</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    color: #000;
-    font-family: Arial, sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ml</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  .menu {
-    background-color: #333;
-    padding: 15px 30px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
 
-  .menu a, .menu .site-name {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 30px;
-    display: inline-block;
-  }
+        .time-display {
+            font-size: 36px;
+            margin-top: 140px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+            color: #D3D3D3;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            outline: none;
+        }
 
-  .menu a {
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-size: 18px;
-  }
+        .search-container {
+            text-align: center;
+        }
 
-  .menu .site-name {
-    font-size: 24px;
-    font-weight: bold;
-  }
+        input[type="text"] {
+            background-color: white;
+            border: 1px solid #D3D3D3;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 20px;
+            outline: none;
+            transition: transform 0.2s ease;
+            width: 200px;
+        }
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: calc(100vh - 150px);
-  }
+        input[type="text"]:focus {
+            transform: scale(1.40);
+        }
 
-  .button {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    cursor: pointer;
-    margin: 20px auto;
-    background-color: #007bff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+        /* Media query for screens larger than 600px (desktop view) */
+        @media (min-width: 600px) {
+            input[type="text"] {
+                width: 400px;
+            }
+        }
 
-  .button span {
-    transition: transform 0.3s ease;
-    line-height: 1;
-  }
+        .footer-text {
+            font-size: 14px;
+            color: gray;
+            position: absolute;
+            bottom: 50px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+    <script>
+        let searchEngineIndex = 0;
 
-  .button:active {
-    transform: scale(0.95);
-  }
+        function updateTime() {
+            const timeDisplay = document.getElementById('time-display');
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+        }
 
-  @media screen and (max-width: 480px) {
-    .menu .site-name {
-      font-size: 12px;
-      margin-right: 15px;
-    }
+        function toggleSearchEngine() {
+            const timeDisplay = document.getElementById('time-display');
+            const searchInput = document.getElementById('search-input');
+            const searchForm = document.getElementById('search-form');
 
-    .menu a {
-      font-size: 9px;
-      margin-right: 15px;
-      padding: 6px 10px;
-    }
+            if (searchEngineIndex === 0) {
+                searchForm.action = 'https://www.google.com/search';
+                searchInput.name = 'q';
+                timeDisplay.style.color = '#FF7F7F';
+            } else if (searchEngineIndex === 1) {
+                searchForm.action = 'https://www.bing.com/search';
+                searchInput.name = 'q';
+                timeDisplay.style.color = '#ADD8E6';
+            } else {
+                searchForm.action = 'https://www.baidu.com/s';
+                searchInput.name = 'wd';
+                timeDisplay.style.color = '#D3D3D3';
+            }
 
-    .button {
-      width: 100px;
-      height: 100px;
-      font-size: 24px;
-      margin-top: -20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-</style>
+            searchEngineIndex = (searchEngineIndex + 1) % 3;
+        }
+
+        setInterval(updateTime, 1000);
+        window.onload = updateTime;
+    </script>
 </head>
 <body>
-  <div class="menu">
-    <span class="site-name">MY</span>
-    <a href="#" onclick="showScreen('mynas')" id="blueLink" class="active">MyNas</a>
-    <a href="#" onclick="showScreen('chatgpt')" id="baiduLink">ChatGPT</a>
-    <a href="#" onclick="showScreen('google')" id="googleLink">Google</a>
-  </div>
 
-  <div class="button-container">
-    <div id="mynasScreen" class="screen">
-      <div class="button" onclick="navigateTo('https://iwlyfmyc.ddnsto.com:443')"><span>GO</span></div>
-    </div>
-    <div id="chatgptScreen" class="screen" style="display: none;">
-      <div class="button" onclick="navigateTo('https://chatgpt.com/')"><span>Chat</span></div>
-    </div>
-    <div id="googleScreen" class="screen" style="display: none;">
-      <div class="button" onclick="navigateTo('https://www.google.com')"><span>Goo</span></div>
-    </div>
-  </div>
+<div class="time-display" id="time-display" onclick="toggleSearchEngine()"></div>
 
-  <script>
-    function showScreen(screenId) {
-      var screens = document.querySelectorAll('.screen');
-      for (var i = 0; i < screens.length; i++) {
-        screens[i].style.display = 'none';
-      }
-      document.getElementById(screenId + 'Screen').style.display = 'block';
+<div class="search-container">
+    <form id="search-form" action="https://www.baidu.com/s" method="get">
+        <input type="text" id="search-input" name="wd" placeholder="" />
+    </form>
+</div>
 
-      var links = document.querySelectorAll('.menu a');
-      for (var j = 0; j < links.length; j++) {
-        links[j].classList.remove('active');
-      }
-      document.getElementById(screenId + 'Link').classList.add('active');
-    }
+<div class="footer-text">有情人好聚好散</div>
 
-    function navigateTo(url) {
-      setTimeout(function() { window.location.href = url; }, 300);
-    }
-
-    window.onload = function() {
-      showScreen('mynas');
-    };
-  </script>
 </body>
 </html>
