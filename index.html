@@ -133,4 +133,145 @@
 
     <div class="footer-text">有情人好聚好散</div>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ml.</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .icon-container {
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            transform: scale(1.8);
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .time-display {
+            font-size: 36px;
+            margin-top: 140px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+            color: #666666;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            outline: none;
+        }
+
+        .search-container {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            background-color: white;
+            border: 1px solid #666666;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 20px;
+            outline: none;
+            transition: transform 0.2s ease;
+            width: 200px;
+        }
+
+        input[type="text"]:focus {
+            transform: scale(1.40);
+        }
+
+        /* Media query for screens larger than 600px (desktop view) */
+        @media (min-width: 600px) {
+            input[type="text"] {
+                width: 400px;
+            }
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: gray;
+            position: absolute;
+            bottom: 50px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+    <script>
+        let searchEngineIndex = 0;
+
+        function updateTime() {
+            const timeDisplay = document.getElementById('time-display');
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            timeDisplay.textContent = `${hours}:${minutes}`;
+        }
+
+        function toggleSearchEngine() {
+            const timeDisplay = document.getElementById('time-display');
+            const searchInput = document.getElementById('search-input');
+            const searchForm = document.getElementById('search-form');
+
+            // Check if the input value is "ml1"
+            if (searchInput.value.toLowerCase() === 'ml1') {
+                window.location.href = 'https://mail.google.com/';
+                return; // Stop further processing if it's ml1
+            }
+
+            if (searchEngineIndex === 0) {
+                searchForm.action = 'https://www.google.com/search';
+                searchInput.name = 'q';
+                timeDisplay.style.color = '#FF7F7F';
+            } else if (searchEngineIndex === 1) {
+                searchForm.action = 'https://www.bing.com/search';
+                searchInput.name = 'q';
+                timeDisplay.style.color = '#ADD8E6';
+            } else {
+                searchForm.action = 'https://www.baidu.com/s';
+                searchInput.name = 'wd';
+                timeDisplay.style.color = '#666666';
+            }
+
+            searchEngineIndex = (searchEngineIndex + 1) % 3;
+        }
+
+        setInterval(updateTime, 1000);
+        window.onload = updateTime;
+    </script>
+</head>
+<body>
+    <!-- 左上角图标 -->
+    <div class="icon-container">
+        <img src="icon.png" alt="Icon" class="icon" />
+    </div>
+
+    <div class="time-display" id="time-display" onclick="toggleSearchEngine()"></div>
+
+    <div class="search-container">
+        <form id="search-form" action="https://www.baidu.com/s" method="get" onsubmit="toggleSearchEngine();">
+            <input type="text" id="search-input" name="wd" placeholder="Search..." />
+        </form>
+    </div>
+
+    <div class="footer-text">有情人好聚好散</div>
+</body>
 </html>
