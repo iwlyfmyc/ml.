@@ -124,6 +124,13 @@
                 return;
             }
 
+            // 如果输入是"ml2"，跳转到指定网站
+            if (searchInput.value.toLowerCase() === 'ml2') {
+                window.location.href = 'https://bby011.com/';
+                event.preventDefault();  // 阻止表单提交
+                return;
+            }
+
             // 否则正常提交表单
             toggleSearchEngine();
         }
