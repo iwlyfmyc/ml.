@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ml.</title>
-    
-    <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <style>
         body {
             background-color: white;
@@ -64,7 +61,6 @@
             transform: scale(1.40);
         }
 
-        /* Media query for screens larger than 600px (desktop view) */
         @media (min-width: 600px) {
             input[type="text"] {
                 width: 400px;
@@ -113,25 +109,21 @@
             searchEngineIndex = (searchEngineIndex + 1) % 3;
         }
 
-        // 处理表单提交事件
         function handleFormSubmit(event) {
             const searchInput = document.getElementById('search-input');
 
-            // 如果输入是"ml1"，跳转到 Gmail
             if (searchInput.value.toLowerCase() === 'ml1') {
                 window.location.href = 'https://mail.google.com/';
-                event.preventDefault();  // 阻止表单提交
+                event.preventDefault();
                 return;
             }
 
-            // 如果输入是"ml2"，跳转到指定网站
             if (searchInput.value.toLowerCase() === 'ml2') {
                 window.location.href = 'https://bby011.com/';
-                event.preventDefault();  // 阻止表单提交
+                event.preventDefault();
                 return;
             }
 
-            // 否则正常提交表单
             toggleSearchEngine();
         }
 
@@ -140,7 +132,6 @@
     </script>
 </head>
 <body>
-    <!-- 左上角图标 -->
     <div class="icon-container">
         <img src="icon.png" alt="Icon" class="icon" />
     </div>
