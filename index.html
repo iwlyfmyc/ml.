@@ -21,6 +21,23 @@
             position: relative;
         }
 
+        .icon-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .icon:hover {
+            transform: scale(1.2); /* 鼠标悬停放大效果 */
+        }
+
         .time-display {
             font-size: 36px;
             margin-top: 140px;
@@ -107,16 +124,22 @@
     </script>
 </head>
 <body>
+    <!-- 左上角图标 -->
+    <div class="icon-container">
+        <img src="icon.png" alt="Icon" class="icon" />
+    </div>
 
-<div class="time-display" id="time-display" onclick="toggleSearchEngine()"></div>
+    <!-- 动态时间显示 -->
+    <div class="time-display" id="time-display" onclick="toggleSearchEngine()"></div>
 
-<div class="search-container">
-    <form id="search-form" action="https://www.baidu.com/s" method="get">
-        <input type="text" id="search-input" name="wd" placeholder="" />
-    </form>
-</div>
+    <!-- 搜索框 -->
+    <div class="search-container">
+        <form id="search-form" action="https://www.baidu.com/s" method="get">
+            <input type="text" id="search-input" name="wd" placeholder="" />
+        </form>
+    </div>
 
-<div class="footer-text">有情人好聚好散</div>
-
+    <!-- 页脚文字 -->
+    <div class="footer-text">有情人好聚好散</div>
 </body>
 </html>
